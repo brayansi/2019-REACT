@@ -27,8 +27,7 @@ class App extends Component {
     async add(course) {
         const { courses } = this.state;
         const newCourse = await CourseService.create(course);
-        courses.push(course);
-        this.setState({ courses });
+        this.startData()
     }
 
 
@@ -36,8 +35,7 @@ class App extends Component {
         const { courses } = this.state,
             { courseIndex } = courses.findIndex(course => course.id == courseId)
         await CourseService.remove(courseId);
-        courses.splice(courseIndex, 1);
-        this.setState({ courses });
+        this.startData()
     }
 
     render() {
